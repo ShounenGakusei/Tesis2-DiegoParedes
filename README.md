@@ -26,3 +26,7 @@ conda list cudatoolkit			       # Para usar GPU en el entrenamiento (Opcional)
 
 # 04 GENERAR REPORTES
 !pip install seaborn                   # Generar graficos mas "avanzados"
+
+
+# 05 Deploy Modelos
+pip install -r requirements.txt      # Instalar los paquetenes necesarios
