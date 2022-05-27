@@ -75,7 +75,7 @@ class Model():
                     prediction = modelo.predict({inputLayers[0]: np.full((1, imagen.shape[0], imagen.shape[1],
                                                                               imagen.shape[2], imagen.shape[3]),
                                                                              imagen),
-                                                 inputLayers[1]: np.full((1,), dato)})
+                                                 inputLayers[1]: np.full((1,), dato)}, verbose=0)
                     predicciones.append(prediction[0,0])
 
             except Exception:

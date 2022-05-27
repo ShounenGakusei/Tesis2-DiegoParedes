@@ -1,40 +1,43 @@
+import traceback
+
 from flask import Flask, request
-from flask_restful import reqparse, Api, Resource
+from flask_restful import Api
 
 from Tests.unit_tests import TestParametros
+from Utils.DefaultParams import getDefaultParams
 from Utils.Model import Model
 from Utils.PredecirClase import evaluarDato, usarModelos
 import tensorflow as tf
+import json
 app = Flask(__name__)
 api = Api(app)
 
 
-# argument parsing
-#parser = reqparse.RequestParser()
-#parser.add_argument('query')
+path_base = app.root_path
 
-path_base = app.root_path#f'C:/Users/Shounen/Desktop/Ciclo XI/Tesis 2/NewTesis/Codigo/05-DeployModelos'
-params = {
-    # Parametros principales
-    'fecha': '2022-02-01-07-00',
-    'dato': 0.4,
-    'coordLon': -80.39788,
-    'coordLat': -4.48047,
+try:
+    with open(f'{path_base}/config.json') as json_file:
+        params = json.load(json_file)
+        print('Se leyó correctamente el archivo config.json')
 
-    # Parametros fijos
-    'dirModelos' : f'{path_base}/Modelos/',
-    'domain': [-88.0, -63.0, -25.0, 5.0],  # [-83.5495, -66.4504, -20.2252, 1.3783],
-    'canales': ['07', '08', '13'],
-    'tiempos': ['00', '50', '40', '30'],
-    'margen': 30,
-    'umbral' : 0.51,
+    # Agregamos parametros adicionales
+    params['dirModelos'] = f'{path_base}/Modelos/'
+    params['fecha'] = '2022-02-01-07-00'
+    params['dato'] =  0.4
+    params['coordLon'] = -80.39788
+    params['coordLat'] = -4.48047
+    params['canales'] = ['07', '08', '13']
+    params['tiempos'] =  ['00', '50', '40', '30']
+    params['margen'] = 30
+    params['dibujar'] = False
+    params['canalDibujar'] = '13'
 
-    # Parametros auxiliares
-    'dibujar': False,
-    'canalDibujar': '13',
-    'save': True,
-    'hard_save': False
-}
+except Exception:
+    traceback.print_exc()
+    print('No se pudo leer el archivo de config, se procedera a cargar config predeterminada...')
+    params = getDefaultParams(path_base)
+
+print(params)
 with tf.device("cpu:0"):
     modelosBase = Model(params)
     modelosBase.iniciarModelos()

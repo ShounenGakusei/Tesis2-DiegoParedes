@@ -6,7 +6,7 @@ from Utils.ValidarParametros import comprobarDatos
 
 class TestParametros():
     # Reporte
-    reporte = {'Campo': [] , 'Valor': [], 'Aprobado': [], 'Mensaje': []}
+    reporte = {'Campo': [] , 'Valor': [], 'Esperado':[],'Resultado':[],'Aprobado': [], 'Mensaje': []}
 
     # Parametors iniciales
     good_dato = 0.4
@@ -31,19 +31,21 @@ class TestParametros():
             result = comprobarDatos(params)
             self.reporte['Campo'].append(list_cases['Campo'][i])
             self.reporte['Valor'].append(list_cases['Valor'][i])
+            self.reporte['Esperado'].append(list_cases['Esperado'][i])
+            self.reporte['Resultado'].append(result['valido'])
             if result['valido'] == list_cases['Esperado'][i]:
                 self.passed = self.passed + 1
-                self.reporte['Aprobado'].append(True)
+                self.reporte['Aprobado'].append('o')
                 self.reporte['Mensaje'].append(str(result[tipo]))
             else:
                 self.failed = self.failed + 1
-                self.reporte['Aprobado'].append(False)
+                self.reporte['Aprobado'].append('x')
                 self.reporte['Mensaje'].append(str(result[tipo]))
         print('DONE')
 
     def save_reporte(self, path_base):
         tempDF = pd.DataFrame(self.reporte)
-        cod = datetime.today().strftime("%Y%m%d_%H%M%S")
+        cod = datetime.today().strftime("%Y%m%d")
         tempDF.to_csv(f'{path_base}/Tests/Reportes/UT_reporte_{cod}.csv', index = False)
 
     def unitTests(self,path_base):

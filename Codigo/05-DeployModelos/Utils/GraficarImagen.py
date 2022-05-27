@@ -1,4 +1,3 @@
-from netCDF4 import Dataset, num2date
 """
 
 # Como input recibe un string que es el directoeio de una imagen satelital (.nc),

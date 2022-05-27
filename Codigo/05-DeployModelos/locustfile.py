@@ -1,7 +1,8 @@
 from locust import HttpUser, between, task
 class WebsiteUser(HttpUser):
-    wait_time = between(5, 100)
-    @task(2)
+    wait_time = between(5, 15)
+
+    @task
     def test_2(self):
         self.client.get("/predecir?dato=0.4")
         
