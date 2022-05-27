@@ -1,0 +1,18 @@
+#Modelos entrenados
+*.hdf5 
+*.csv
+
+# Enviroments
+Codigo/05-DeployModelos/deployEnv/
+Codigo/05-DeployModelos/venvLoc/
+
+# Archivos inciales, datasets
+Archivos/Dataset/
+Archivos/Inicial/
+Archivos/Reportes/
+#Archivos/Resultados/
+Codigo/03-EntrenamientoModelos/Temp/
+
+# Archivos temporales de liberias
+*.log
+.idea/*
