@@ -2,7 +2,7 @@ def getDefaultParams(path_base):
 
     params = {
         # Parametros principales
-        'fecha': '2022-02-01-07-00',
+        'fecha': '2022-02-01-07',
         'dato': 0.4,
         'coordLon': -80.39788,
         'coordLat': -4.48047,
@@ -22,6 +22,7 @@ def getDefaultParams(path_base):
         "sizeMax": 2000000,
         "saveMax": 10000000,
         'umbral': 0.51,
+        'port' : 8080,
     }
 
     return params

@@ -1,4 +1,5 @@
 import os
+import time
 import traceback
 import GOES
 
@@ -80,6 +81,7 @@ def saveNCFile(filename, i, c, CMI, LonsCen, LatsCen):
 
 # domain =  [-88.0,-63.0,-25.0,5.0] # [-90.0,-30.0,-60.0,15.0]
 def downloadImageGOES(path_base, p):
+    start_time = time.time()
     errors = []
     data = {}
 
@@ -162,4 +164,5 @@ def downloadImageGOES(path_base, p):
                 errors.append(errorSave)
                 return -1, errors
 
+    print("Time taken: %.2fs" % (time.time() - start_time))
     return filename, errors

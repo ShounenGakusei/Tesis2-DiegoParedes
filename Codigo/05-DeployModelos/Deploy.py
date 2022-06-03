@@ -31,13 +31,15 @@ try:
     params['margen'] = 30
     params['dibujar'] = False
     params['canalDibujar'] = '13'
+    params['sizeMax'] = 2000000
+    params["hard_save"] = False
 
 except Exception:
     traceback.print_exc()
     print('No se pudo leer el archivo de config, se procedera a cargar config predeterminada...')
     params = getDefaultParams(path_base)
 
-print(params)
+#print(params)
 with tf.device("cpu:0"):
     modelosBase = Model(params)
     modelosBase.iniciarModelos()
@@ -55,9 +57,12 @@ def unitTest():
 def get():
 
     dato = request.args.get('dato', default='*', type=str)
-    fecha = request.args.get('fecha', default='2022-02-01-07-00', type=str)
+    fecha = request.args.get('fecha', default='2022-02-01-07', type=str)
     coordlon = request.args.get('lon', default='-80.39788', type=str)
     coordLat = request.args.get('lat', default='-4.48047', type=str)
+
+    if len(fecha)==13:
+        fecha = fecha + '-00'
 
     print(f'Nueva peticion: {dato}')
 
@@ -108,4 +113,4 @@ def get():
     return output
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080, threaded=False)
+    app.run(debug=False, port=params['port'], threaded=False)

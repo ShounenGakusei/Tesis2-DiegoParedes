@@ -87,7 +87,7 @@ def getImages(path_base, params):
             errors.append('Error al intentar borrar el archivo de imagenes')
             return -1, errors
 
-        downLoad =  True
+        downLoad = True
         fileName, errorDownload = downloadImageGOES(path_base, params)
         if errorDownload:
             errors.append(errorDownload)
@@ -97,9 +97,8 @@ def getImages(path_base, params):
     else:
         fileName, errorFindFile = findImagesFiles(fileName)
         # En caso no lo encuentre, o este corrupto, se descargara nuevamente
-        if errorFindFile:
-            errors.append(errorFindFile)
-
+        if not fileName:
+            #errors.append(errorFindFile)
             downLoad = True
             fileName, errorDownload = downloadImageGOES(path_base, params)
             if errorDownload:
