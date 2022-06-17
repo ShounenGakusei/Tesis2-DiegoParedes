@@ -43,7 +43,7 @@ class Model():
                 pass
 
             if len(self.modelos) == 0:
-                self.errors.append(f'No se logro agregar ningun modelo')
+                self.errors.append(f'No se logro leer ningun modelo algoritmico')
                 self.valido = False
 
     def predecirValor(self, imagen, dato):
@@ -83,7 +83,7 @@ class Model():
                 pass
 
         if len(predicciones) == 0:
-            errores.append(f'Error al predecir con el modelo')
+            errores.append(f'Error al intentar predecir la clasificacion para el valor de precipitacion con el modelo')
 
         for p in predicciones:
             if p > self.params['umbral']:
