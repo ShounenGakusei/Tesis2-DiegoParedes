@@ -10,9 +10,9 @@ def getDefaultParams(path_base):
         # Parametros fijos
         'dirModelos' : f'{path_base}/Modelos/',
         'domain': [-88.0, -63.0, -25.0, 5.0],  # [-83.5495, -66.4504, -20.2252, 1.3783],
-        'canales': ['07', '08', '13'],
-        'tiempos': ['00', '50', '40', '30'],
-        'margen': 30,
+        'canales': ['13', '07', '08'],#['07', '08', '13'],
+        'tiempos': ['00', '30', '50'],#['00', '30', '50'],#['50', '30', '00'], #['00', '50', '40', '30'],
+        'margen': 10, #30,
 
         # Parametros auxiliares
         'dibujar': False,

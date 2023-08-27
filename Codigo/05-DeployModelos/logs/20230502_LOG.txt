@@ -1,0 +1,3 @@
+[2023/05/02 23:37:57] : (1683088677) Iniciando nueva prediccion ...
+[2023/05/02 23:37:57] : (1683088677) {'port': 8080, 'umbral': '0.51', 'sizeMax': '310', 'save': True, 'domain': [-88.0, -63.0, -25.0, 5.0], 'saveMax': 10000001, 'dirModelos': 'C:\\Users\\Shounen\\Desktop\\Ciclo XI\\Tesis 2\\SistemaQC/Modelos/', 'fecha': '2023-01-01-11-00', 'dato': '40.2', 'canales': ['07', '08', '13'], 'tiempos': ['00', '50', '40', '30', '20', '10'], 'margen': 24, 'dibujar': False, 'canalDibujar': '13', 'hard_save': False, 'coordLon': '-80.39788', 'coordLat': '-4.48047', 'ID': 1683088677}
+[2023/05/02 23:37:58] : (1683088677)  Prediccion finalizada con exito

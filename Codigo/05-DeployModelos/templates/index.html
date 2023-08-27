@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QC Precipitation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ url_for('static', filename='validar-input-ui.js') }}"></script>
+<body>
+<!-- Formulario de prediccion  -->
+<div class="row align-items-center text-center py-5">
+    <h1> Parametros de entrada : QC de Precipitaciones </h1>
+</div>
+
+<form>
+    <div class="row px-5">
+        <div class="col-8 col-sm-6 py-2 mx-auto">
+            <label for="longitud_input" class="form-label">Ingrese Longitud</label>
+            <input type="text" name="coordLon" id="longitud_input" class="form-control">
+        </div>
+
+        <div class="col-8 col-sm-6 py-2  mx-auto">
+            <label for="latitud_input" class="form-label">Ingrese Latitud</label>
+            <input type="text" name="coordLat" id="latitud_input" class="form-control">
+        </div>
+
+        <div class="col-8 col-sm-6 py-2  mx-auto">
+            <label for="fecha_input" class="form-label">Ingrese Fecha</label>
+            <input type="text" name="fecha" id="fecha_input" class="form-control">
+        </div>
+
+        <div class="col-8 col-sm-6 py-2 mx-auto">
+            <label for="dato_input" class="form-label">Ingrese dato de precipitacion</label>
+            <input type="text" name="dato" id="dato_input" class="form-control">
+        </div>
+
+
+        <a ref=# id="mi-formulario" class="row">
+            <button type="submit" class="btn btn-primary my-3 mx-auto col-6"> Predecir QC </button>
+        </a>
+
+        <div class="accordion" id="accordionConfiguration">
+            <div class="accordion-item">
+                <h2 class="accordion-header " id="headingConfig">
+                    <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseConfig" aria-expanded="false" aria-controls="collapseConfig">
+                        Extra Configuracion ...
+                    </button>
+                </h2>
+                <div id="collapseConfig" class="accordion-collapse collapse" aria-labelledby="headingConfig"
+                     data-bs-parent="#accordionConfiguration">
+                    <div class="accordion-body">
+                        <div class="form-config-wrapper row">
+                            <div class="left-cofig-form col-6">
+                                <div class="mb-3 row">
+                                    <label class="col-sm-4 col-form-label"> Umbral (C) :</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="umbral" id="umbral-input" class="form-control"
+                                               value="{{ params.umbral }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right-cofig-form col-6">
+                                <div class="mb-3 row">
+                                    <label class="col-sm-4 col-form-label"> Max. espacio(MB) :</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="sizeMax" id="sizememory-input"
+                                               class="form-control"
+                                               value="{{ params.sizeMax }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+</html>

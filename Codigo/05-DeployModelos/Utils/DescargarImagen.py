@@ -11,6 +11,7 @@ from pyresample import bilinear
 from netCDF4 import Dataset
 import numpy as np
 
+from Utils.GestinarLogs import create_get_actual_log_dir, write_on_file
 from Utils.ValidarParametros import converGoesDate
 
 
@@ -112,8 +113,6 @@ def downloadImageGOES(path_base, p):
     Inicio
     """
 
-
-
     # Inicializamos variables de descarga
     filename = f'{path_base}/Imagenes/{p["fecha"]}.nc'
     try:
@@ -130,11 +129,12 @@ def downloadImageGOES(path_base, p):
     fechaIni = converGoesDate(p['fecha'], mm=-(10 * len(p['tiempos'])))
     fechaFin = converGoesDate(p['fecha'], mm=10)
 
+
     LonCen = None
     for c in p['canales']:
         filesT = GOES.download('goes16', 'ABI-L2-CMIPF',
                                DateTimeIni=fechaIni, DateTimeFin=fechaFin,
-                               channel=[c], rename_fmt='%Y%m%d%H%M%S', path_out=f'{path_base}/Temp/')
+                               channel=[c], rename_fmt='%Y%m%d%H%M%S', path_out=f'{path_base}/dlImages/')
 
         if len(filesT) < len(p['tiempos']):
             errors.append(f'No se pudo encontrar suficientes imagenes para el canal {c}')
@@ -163,6 +163,7 @@ def downloadImageGOES(path_base, p):
             if errorSave:
                 errors.append(errorSave)
                 return -1, errors
+
 
     print("Time taken: %.2fs" % (time.time() - start_time))
     return filename, errors

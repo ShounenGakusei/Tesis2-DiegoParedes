@@ -34,8 +34,8 @@ class Model():
         init = True
         for mWeigts in modelos_file:
             try:
-                modelo = crearModelo(self.params)
-                modelo.load_weights(mWeigts)
+                #modelo = crearModelo(self.params)
+                modelo = tf.keras.models.load_model(mWeigts)
                 self.modelos.append(modelo)
 
             except:
@@ -46,7 +46,7 @@ class Model():
                 self.errors.append(f'No se logro leer ningun modelo algoritmico')
                 self.valido = False
 
-    def predecirValor(self, imagen, dato):
+    def predecirValor(self, imagen, dato, extras={}):
         errores = []
         predicciones = []
 
@@ -70,12 +70,17 @@ class Model():
             for layer in config['layers']:
                 if layer['class_name'] == 'InputLayer':
                     inputLayers.append(layer['name'])
+            #print(inputLayers)
             try:
                 #with tf.device("cpu:0"):
                 prediction = modelo.predict({inputLayers[0]: np.full((1, imagen.shape[0], imagen.shape[1],
                                                                           imagen.shape[2], imagen.shape[3]),
                                                                          imagen),
-                                             inputLayers[1]: np.full((1,), dato)}, verbose=0)
+                                             inputLayers[1]: np.full((1,), dato), # 2
+                                             inputLayers[3]: np.full((1,), float(extras['alt'])), #3
+                                             inputLayers[2]: np.full((1,), float(extras['umb1'])) # 1
+                                             }, verbose=0)
+                print('Prediccion: ', prediction)
                 predicciones.append(prediction[0,0])
 
             except Exception:
@@ -85,12 +90,14 @@ class Model():
         if len(predicciones) == 0:
             errores.append(f'Error al intentar predecir la clasificacion para el valor de precipitacion con el modelo')
 
+        # TODO - Aqui se define lso umbrales, revisar para umbrales M y C
         for p in predicciones:
-            if p > self.params['umbral']:
+            if p > extras['umbral']: #p > self.params['umbral']:
                 conforme = conforme + 1
-            elif p < (1-self.params['umbral']):
-                malo = malo + 1
+            #elif p < (1-extras['umbral']):
+            #    malo = malo + 1
             else:
-                nc = nc +1
+                #nc = nc +1
+                malo = malo +1
 
         return predicciones, nc, malo, conforme, errores

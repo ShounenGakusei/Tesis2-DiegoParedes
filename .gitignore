@@ -16,3 +16,5 @@ Codigo/03-EntrenamientoModelos/Temp/
 # Archivos temporales de liberias
 *.log
 .idea/*
+.ipynb_checkpoints
+__pycache__/
