@@ -1,0 +1,65 @@
+# ============================================================
+# Base configuration (shared across tasks/experiments)
+# Project: ML with Satellite Images GOES and precipitation data
+# Author: Diego Paredes
+# ============================================================
+
+project:
+  name: "ml-satellite-images-goes-precipitation"
+  version: "0.1.0"
+  description: "Deep learning pipelines for satellite images GOES-16 and precipitation data"
+
+# ------------------------------------------------------------------
+# Reproducibility
+# ------------------------------------------------------------------
+seed: 42
+deterministic: true  # set false for faster training if needed
+
+# ------------------------------------------------------------------
+# Paths (use relative paths from repo root)
+# ------------------------------------------------------------------
+paths:
+  data:
+    raw: "data/raw"
+    interim: "data/interim"
+    processed: "data/processed"
+  outputs:
+    root: "outputs"
+    experiments: "outputs/experiments"      # optional: unified experiments directory
+    figures: "outputs/figures"
+    metrics: "outputs/metrics"
+    models: "outputs/models"
+    logs: "outputs/logs"
+
+# ------------------------------------------------------------------
+# Evaluation & artifacts
+# ------------------------------------------------------------------
+evaluation:
+  save_predictions: true
+  save_figures: true
+  top_k_examples: 24         # for qualitative analysis visuals
+  metrics:
+    classification: ["auc", "f1", "precision", "recall"]
+    regression: ["rmse", "mae", "r2"]
+
+# ------------------------------------------------------------------
+# Logging & experiment tracking
+# ------------------------------------------------------------------
+logging:
+  level: "INFO"
+  log_to_file: true
+
+tracking:
+  use_wandb: true
+  wandb:
+    project: "satprecip"
+    entity: null             # set your username/team or leave null
+    tags: ["goes16", "peru", "deep-learning"]
+    mode: "online"           # ["online", "offline", "disabled"]
+
+# ------------------------------------------------------------------
+# Runtime / device
+# ------------------------------------------------------------------
+runtime:
+  framework: "tensorflow"
+  device: "auto"             # ["auto", "cpu", "gpu"]

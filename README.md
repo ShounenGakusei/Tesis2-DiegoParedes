@@ -1,33 +1,25 @@
-Autor: Diego Paredes Chilon
-Proyecto de Tesis (PUCP) 2022 - 1
-EL proyecto se ejecuto en JupyterNoteBooks, con version de Python: 3.9
-A continuacion se muestra las librerias necesarias a instalar:
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-# LIBRERIAS ESTANDARES
-- !pip install numpy                     # Manejo de arreglos
-- !pip install pandas                    # Manejo de df y uso de excel/csv
-- !pip install matplotlib                # Para graficar
+**Author:** Diego Paredes  
+**Degree project (PUCP, 2022-1)**  
+**Focus:** Deep learning for **precipitation quality control (QC)** using **GOES-16 satellite imagery**.
 
-# 01 PROCESAMIENTO DE DATOS
-- !pip install Cython                    # Para instalar cartopy
-- conda install -c conda-forge cartopy   # Para visualizar las estaciones
-- !pip install scikit-learn              # Para mezclar los datos y dividirlos
+# Deep Learning–Based Precipitation Quality Control System  (Version 1.0.0)
 
-# 02 PROCESAMIENTO DE IMAGENES
-- !pip install netcdf4                   # Para leer los archivos binarios .nc
-- !pip install PNG					             # Formato que se usa para guardar las imagenes satelitales procesadas
+Between 2020 and 2021, the Peruvian National Meteorological and Hydrological Service (SENAMHI) collected approximately 3.5 million precipitation records from a nationwide network of automatic weather stations.
+Out of the total observations, the existing automated Quality Control (QC) system flagged around 4% of the data as suspicious due to extreme values. However, only 53% of these records were manually validated in a timely manner, mainly due to operational and resource constraints.
+To address this limitation, this project proposes a Deep Learning–based quality control system that leverages GOES‑16 satellite imagery and auxiliary data to validate extreme precipitation observations in near real time.
+The proposed approach relies on a CNN‑RNN architecture, trained using labels generated from the manual QC process, with the goal of supporting and accelerating data validation workflows, reducing operational burden, and improving the availability of reliable precipitation data for hydrometeorological analysis.
 
-# 03 ENTRENAMIENTO DE MODELOS
-- !pip install scipy                     # Otra forma de uniformizar los datos
-- !pip install tensorflow                # Libreria para definir los modelos y entrenarlos
-- !pip install wandb                     # Para guardar los resultados
-- conda list cudnn					             # Para usar GPU en el entrenamiento (Opcional)
-- conda list cudatoolkit			           # Para usar GPU en el entrenamiento (Opcional)
+---
 
+## Repository Structure
 
-# 04 GENERAR REPORTES
-- !pip install seaborn                   # Generar graficos mas "avanzados"
-
-
-# 05 Deploy Modelos
-- pip install -r requirements.txt        # Instalar los paquetenes necesarios
+.
+├── configs/        # Experiment configurations (YAML)
+├── data/           # raw/interim/processed datasets (not versioned)
+├── outputs/        # models, metrics, figures, logs (generated)
+├── notebooks/      # EDA + results + interpretability (CAM/heatmaps)
+├── scripts/        # CLI entrypoints to run pipelines
+└── src/            # Reusable core code (data, models, training)
