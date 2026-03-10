@@ -23,6 +23,11 @@ paths:
     raw: "data/raw"
     interim: "data/interim"
     processed: "data/processed"
+    stations : "data/raw/stations/"
+    thresholds : "data/raw/thresholds/"
+  goes:
+    images: "data/goes_images/"        # carpeta final (raw/curated)
+    test: "data/goes_images/test/" # carpeta con imagenes de prueba (solo para testeo)
   outputs:
     root: "outputs"
     experiments: "outputs/experiments"      # optional: unified experiments directory
@@ -30,6 +35,39 @@ paths:
     metrics: "outputs/metrics"
     models: "outputs/models"
     logs: "outputs/logs"
+
+# ------------------------------------------------------------------
+# GOES
+# ------------------------------------------------------------------
+goes:
+  start : "2023-11-21-01-00"
+  end : "2023-11-21-03-00" #"2025-11-21-01-00"
+
+  time_offset_hours : 5
+  save_images: true
+  goes_data: "data/goes_images/" 
+  goes_test_images : "data/goes_images/test/"
+  
+  limits:
+    min_image_size_bytes: 26214400     # 25 * 1024 * 1024
+    max_temp_folder_bytes: 1006632960  # 2 * (480 * 1024 * 1024)
+
+    max_image_folder_bytes: -1 #-1 no se borra nada, 402653184  # 12 * (32 * 1024 * 1024) aprox
+
+  domain: [-88.0, -63.0, -25.0, 5.0]  # [lon_min, lon_max, lat_min, lat_max]
+  times : ["00", "50", "40", "30", "20", "10"]
+  channels : ["07", "08", "13"]
+
+
+  reprojection:
+    pixres_km: 2.0
+    xmin: 80
+    xmax: 1030
+    ymin: 700
+    ymax: 1900
+    radius: 6000
+
+  save_images : True
 
 # ------------------------------------------------------------------
 # Evaluation & artifacts
@@ -46,7 +84,7 @@ evaluation:
 # Logging & experiment tracking
 # ------------------------------------------------------------------
 logging:
-  level: "INFO"
+  level: "DEBUG"
   log_to_file: true
 
 tracking:

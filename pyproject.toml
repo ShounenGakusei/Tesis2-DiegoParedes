@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dlgoes"
+version = "0.1.0"
+dependencies = [
+  "netCDF4==1.7.4",
+  "goes==3.4.4",
+  "pyresample==1.35.0",
+  "PyYAML>=6.0",
+  "plotly==6.6.0",
+  "pandas==3.0.1",
+  "matplotlib==3.10.8",
+  "nbformat==5.10.4",
+  "tensorflow==2.20.0",
+  "seaborn==0.13.2",
+  "pytest",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

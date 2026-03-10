@@ -1,0 +1,23 @@
+name : 'base_20260310'
+comment : 'Base cleaning parameters for the preciptiation dataset (Default)'
+
+input_data_path : 'data/interim/merged_data.csv'
+precipitation:
+  max_value : 401
+  min_value : 0
+times : ["00", "50", "40", "30", "20", "10"]
+channels : ["07", "08", "13"]
+flag:
+  include : ['C0000002', 'M0000002']
+  exclude : []
+
+flg_v2:
+  include : ['D01','D02','C01']
+  exclude : []
+
+zeros : 0.1
+pruebas    : 0.01
+validacion : 0.1
+
+target_name : 'target'
+target_condition : ['flag','C0000002']

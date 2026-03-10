@@ -14,6 +14,12 @@ The proposed approach relies on a CNN‑RNN architecture, trained using labels g
 
 ---
 
+
+## Environment
+- Python 3.11
+- pip 26.x recommended
+
+
 ## Repository Structure
 
 .
