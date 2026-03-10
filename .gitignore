@@ -48,7 +48,7 @@ Thumbs.db
 # Data (do NOT version raw or large datasets)
 # ============================================================
 data/raw/
-#data/interim/
+data/interim/
 #data/processed/
 
 data/goes_images/temp/*.*
