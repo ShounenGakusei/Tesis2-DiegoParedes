@@ -1,0 +1,17 @@
+[
+  {
+    "split": "holdout",
+    "examples": 0,
+    "shards": 1
+  },
+  {
+    "split": "test",
+    "examples": 0,
+    "shards": 1
+  },
+  {
+    "split": "train",
+    "examples": 0,
+    "shards": 1
+  }
+]

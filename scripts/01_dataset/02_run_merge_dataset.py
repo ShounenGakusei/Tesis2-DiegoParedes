@@ -44,7 +44,7 @@ def main():
     logger.debug("Saving final dataset with precipitation y station data")
     processed_path = Path(cfg.paths.project_root) / cfg.paths.data.interim 
     check_create_dir(processed_path)
-    df_final.to_csv(processed_path / 'merged_data.csv')
+    df_final.to_csv(processed_path / 'merged_data.csv',index=False)
 
     logger.info("End build_stations_dataset")
 

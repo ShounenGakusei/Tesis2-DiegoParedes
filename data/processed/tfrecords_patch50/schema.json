@@ -1,0 +1,13 @@
+{
+  "PRECIPITACION": "float",
+  "FLAG_V2": "str",
+  "FLAG": "str",
+  "LON": "float",
+  "LAT": "float",
+  "ALT": "float",
+  "CODE": "str",
+  "FECHA_STR": "str",
+  "XLO": "int",
+  "XLA": "int",
+  "TARGET": "str"
+}

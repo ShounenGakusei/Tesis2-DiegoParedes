@@ -4,7 +4,7 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]  # sube de tests/ a root/
 
-def test_final_dataset_not_empty():
+def test_interim_dataset_not_empty():
     path = REPO_ROOT / "data" / "interim" / "merged_data.csv"
     assert path.exists(), f"No existe el archivo: {path}"
     df = pd.read_csv(path)
